@@ -36,6 +36,7 @@ handler.enter = function(msg, session, next) {
 	session.push('rid', function(err) {
 		if(err) {
 			console.error('set rid for session service failed! error is : %j', err.stack);
+
 		}
 	});
 	session.on('closed', onUserLeave.bind(null, self.app));

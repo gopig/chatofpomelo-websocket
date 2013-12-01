@@ -1,13 +1,12 @@
 {
     "development":{
         "connector":[
-             {"id":"connector-server-1", "host":"127.0.0.1", "port":4050, "clientPort": 3050, "frontend": true},
-             {"id":"connector-server-2", "host":"127.0.0.1", "port":4051, "clientPort": 3051, "frontend": true},
              {"id":"connector-server-3", "host":"127.0.0.1", "port":4052, "clientPort": 3052, "frontend": true}
          ],
+        "webconnector":[
+            {"id":"webconnector-server-3", "host":"127.0.0.1", "port":4053, "clientPort": 3053, "frontend": true}
+        ],
         "chat":[
-             {"id":"chat-server-1", "host":"127.0.0.1", "port":6050},
-             {"id":"chat-server-2", "host":"127.0.0.1", "port":6051},
              {"id":"chat-server-3", "host":"127.0.0.1", "port":6052}
         ],
         "gate":[
@@ -15,14 +14,13 @@
 	    ]
     },
     "production":{
-           "connector":[
-             {"id":"connector-server-1", "host":"127.0.0.1", "port":4050, "clientPort": 3050, "frontend": true},
-             {"id":"connector-server-2", "host":"127.0.0.1", "port":4051, "clientPort": 3051, "frontend": true},
+         "connector":[
              {"id":"connector-server-3", "host":"127.0.0.1", "port":4052, "clientPort": 3052, "frontend": true}
          ],
+        "web-connector":[
+            {"id":"webconnector-server-3", "host":"127.0.0.1", "port":4053, "clientPort": 3053, "frontend": true}
+        ],
         "chat":[
-             {"id":"chat-server-1", "host":"127.0.0.1", "port":6050},
-             {"id":"chat-server-2", "host":"127.0.0.1", "port":6051},
              {"id":"chat-server-3", "host":"127.0.0.1", "port":6052}
         ],
         "gate":[
