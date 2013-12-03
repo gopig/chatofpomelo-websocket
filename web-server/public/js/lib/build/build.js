@@ -1749,6 +1749,10 @@ require.register("boot/index.js", function(exports, require, module){
   window.pomelo = pomelo;
 
 });
+
+
+
+
 require.alias("boot/index.js", "pomelo-client/deps/boot/index.js");
 require.alias("boot/index.js", "boot/index.js");
 require.alias("component-emitter/index.js", "boot/deps/emitter/index.js");
@@ -1757,12 +1761,9 @@ require.alias("component-indexof/index.js", "component-emitter/deps/indexof/inde
 require.alias("NetEase-pomelo-protocol/lib/protocol.js", "boot/deps/pomelo-protocol/lib/protocol.js");
 require.alias("NetEase-pomelo-protocol/lib/protocol.js", "boot/deps/pomelo-protocol/index.js");
 require.alias("NetEase-pomelo-protocol/lib/protocol.js", "NetEase-pomelo-protocol/index.js");
-
 require.alias("pomelonode-pomelo-protobuf/lib/client/protobuf.js", "boot/deps/pomelo-protobuf/lib/client/protobuf.js");
 require.alias("pomelonode-pomelo-protobuf/lib/client/protobuf.js", "boot/deps/pomelo-protobuf/index.js");
 require.alias("pomelonode-pomelo-protobuf/lib/client/protobuf.js", "pomelonode-pomelo-protobuf/index.js");
-
 require.alias("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", "boot/deps/pomelo-jsclient-websocket/lib/pomelo-client.js");
 require.alias("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", "boot/deps/pomelo-jsclient-websocket/index.js");
 require.alias("pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js", "pomelonode-pomelo-jsclient-websocket/index.js");
-
