@@ -2,7 +2,7 @@ var pomelo = require('pomelo');
 var dispatcher = require('./app/util/dispatcher');
 var abuseFilter = require('./app/servers/chat/filter/abuseFilter');
 var timeReport = require('./app/modules/timeReport');
-//var webConnector = require('./app/connectors/WebConnector');
+var webConnector = require('./app/connectors/WebConnector');
 
 // route definition for chat server
 var chatRoute = function(session, msg, app, cb) {
@@ -32,12 +32,12 @@ app.configure('production|development', 'connector', function(){
             connector : pomelo.connectors.hybridconnector
 		});
 });
-//app.configure('production|development', 'webconnector', function(){
-//    app.set('connectorConfig',
-//        {
-//            connector : webConnector
-//        });
-//});
+app.configure('production|development', 'webconnector', function(){
+    app.set('connectorConfig',
+        {
+            connector : webConnector
+        });
+});
 app.configure('production|development', 'gate', function(){
 	app.set('connectorConfig',
 		{
