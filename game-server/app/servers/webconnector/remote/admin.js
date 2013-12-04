@@ -5,6 +5,7 @@ module.exports = function(app) {
 var AdminRemote = function(app) {
     this.app = app;
     this.channelService = app.get('channelService');
+    console.log("AdminRemote conscotor");
 };
 
 /**
@@ -32,9 +33,12 @@ AdminRemote.prototype.add = function(uid, sid, name, flag, cb) {
     cb(this.get(name, flag));
 };
 AdminRemote.prototype.enter = function(param,cb){
-
-    cb(param.b);
+    cb(param.a);
 };
+AdminRemote.prototype.show = function(param,cb){
+    require.cache = {};
+    cb("ok");
+}
 /**
  * Get user from chat channel.
  *

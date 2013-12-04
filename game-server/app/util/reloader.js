@@ -20,10 +20,10 @@ module.exports.start = function() {
                 console.log("New file: " + f, "info");
                 require.cache = {};
             } else if (curr.nlink === 0) {
-                console.log("" + f + " has been deleted", "info");
+                console.log("" + f + " has been deleted");
                 require.cache = {};
             } else {
-                console.log("" + f + " has been changed", "info");
+                console.log("" + f + " has been changed");
                 require.cache = {};
 
             }
