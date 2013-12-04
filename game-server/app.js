@@ -3,6 +3,7 @@ var dispatcher = require('./app/util/dispatcher');
 var abuseFilter = require('./app/servers/chat/filter/abuseFilter');
 var timeReport = require('./app/modules/timeReport');
 var webConnector = require('./app/connectors/WebConnector');
+var reloader = require('./app/util/reloader');
 
 // route definition for chat server
 var chatRoute = function(session, msg, app, cb) {
@@ -60,7 +61,7 @@ app.configure('production|development', 'gate', function(){
 //app.registerAdmin(timeReport, {app: app});
 // start app
 app.start();
-
+reloader.start();
 process.on('uncaughtException', function(err) {
 	console.error(' Caught exception: ' + err.stack);
 });

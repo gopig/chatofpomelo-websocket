@@ -33,7 +33,7 @@ AdminRemote.prototype.add = function(uid, sid, name, flag, cb) {
 };
 AdminRemote.prototype.enter = function(param,cb){
 
-    cb(param);
+    cb(param.b);
 };
 /**
  * Get user from chat channel.
