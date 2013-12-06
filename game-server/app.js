@@ -59,6 +59,7 @@ app.configure('production|development', 'gate', function(){
 
 //app.registerAdmin(timeReport, {app: app});
 // start app
+app.enable('systemMonitor');
 app.start();
 
 process.on('uncaughtException', function(err) {
