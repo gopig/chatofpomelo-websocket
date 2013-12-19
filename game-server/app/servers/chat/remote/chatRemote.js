@@ -74,3 +74,6 @@ ChatRemote.prototype.kick = function(uid, sid, name) {
 	};
 	channel.pushMessage(param);
 };
+ChatRemote.prototype.log = function(){
+    console.log()
+};

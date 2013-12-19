@@ -75,5 +75,4 @@ WebConnector.decode = WebConnector.prototype.decode = function(msg) {
         route: 'webconnector.route.route',
         body: msg
     };
-
 };

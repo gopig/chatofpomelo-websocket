@@ -16,13 +16,20 @@ var handler = Handler.prototype;
  * @param  {Function} next    next step callback
  * @return {Void}
  */
+
 handler.route = function(msg, session, next) {
 	var self = this;
+
+    var server = msg.s;
     var handler = msg.h;
     var method = msg.m;
     var param = msg.q;
-    if(self.app.rpc.webconnector[handler][method] != undefined){
-        self.app.rpc.webconnector[handler][method](session,param,function(msg){
+    if(msg.code != 200){
+        next(null,msg);
+        return;
+    }
+    if(self.app.rpc[server][handler][method] != undefined){
+        self.app.rpc[server][handler][method](session,param,function(msg){
             next(null, {
                 msg:msg
             })});

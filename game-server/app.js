@@ -6,17 +6,29 @@ var webConnector = require('./app/connectors/WebConnector');
 var reloader = require('./app/util/reloader');
 
 // route definition for chat server
-var chatRoute = function(session, msg, app, cb) {
-  var chatServers = app.getServersByType('chat');
+var chatRoute = function (session, msg, app, cb) {
+    var chatServers = app.getServersByType('chat');
 
-	if(!chatServers || chatServers.length === 0) {
-		cb(new Error('can not find chat servers.'));
-		return;
-	}
+    if (!chatServers || chatServers.length === 0) {
+        cb(new Error('can not find chat servers.'));
+        return;
+    }
 
-	var res = dispatcher.dispatch(session.get('rid'), chatServers);
+    var res = chatServers[parseInt(Math.random()*chatServers.length)];
+    cb(null, res.id);
+};
+var adminRoute = function (session, msg, app, cb) {
+    var webServers = app.getServersByType('webconnector');
 
-	cb(null, res.id);
+    if (!webServers || webServers.length === 0) {
+        cb(new Error('can not find chat servers.'));
+        return;
+    }
+    var res = webServers[parseInt(Math.random()*webServers.length)];
+
+    //var res = dispatcher.dispatch(session.get('rid'), webServers);
+
+    cb(null, res.id);
 };
 
 
@@ -27,32 +39,35 @@ var app = pomelo.createApp();
 app.set('name', 'chatofpomelo-websocket');
 
 // app configuration
-app.configure('production|development', 'connector', function(){
-	app.set('connectorConfig',
-		{
-            connector : pomelo.connectors.hybridconnector
-		});
-});
-app.configure('production|development', 'webconnector', function(){
+app.configure('production|development', 'connector', function () {
     app.set('connectorConfig',
         {
-            connector : webConnector
+            connector: pomelo.connectors.hybridconnector
         });
 });
-app.configure('production|development', 'gate', function(){
-	app.set('connectorConfig',
-		{
-			connector : pomelo.connectors.hybridconnector,
-			useDict: true,
+app.configure('production|development', 'webconnector', function () {
+    app.set('connectorConfig',
+        {
+            connector: webConnector
+        });
+});
+app.configure('production|development', 'gate', function () {
+    app.set('connectorConfig',
+        {
+            connector: pomelo.connectors.hybridconnector,
+            useDict: true,
             useProtobuf: true
-		});
+        });
 });
 //// app configure
-//app.configure('production|development', function() {
-//	// route configures
-//	app.route('chat', chatRoute);
-//  app.filter(pomelo.timeout());
-//});
+app.configure('production|development', function () {
+    // route configures
+    app.before(pomelo.filters.toobusy());
+    app.enable('systemMonitor');
+    app.route('chat', chatRoute);
+    app.route('webconnector',adminRoute);
+    app.filter(pomelo.timeout());
+});
 //
 //app.configure('production|development', 'chat', function() {
 //  app.filter(abuseFilter());
@@ -61,7 +76,7 @@ app.configure('production|development', 'gate', function(){
 //app.registerAdmin(timeReport, {app: app});
 // start app
 app.start();
-reloader.start();
-process.on('uncaughtException', function(err) {
-	console.error(' Caught exception: ' + err.stack);
+//reloader.start();
+process.on('uncaughtException', function (err) {
+    console.error(' Caught exception: ' + err.stack);
 });
