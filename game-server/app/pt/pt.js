@@ -1,7 +1,7 @@
 /**
  * Created by 猫粮 on 13-12-19.
  */
-var ByteBuffer = require('ByteBuffer');
+var ByteBuffer = require('./ByteBuffer');
 
 /**
  *

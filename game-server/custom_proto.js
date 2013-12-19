@@ -5,7 +5,7 @@ console.log('-----------------------use in socket------------------------');
 
 var net = require('net');
 var ExBuffer = require('ExBuffer');
-var ByteBuffer = require('ByteBuffer');
+var ByteBuffer = require('./app/pt/ByteBuffer');
 var pt = require('./app/pt/pt');
 
 //测试服务端
