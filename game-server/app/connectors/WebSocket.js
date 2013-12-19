@@ -23,13 +23,15 @@ module.exports = WebSocket;
 
 WebSocket.prototype.onData = function () {
     var paths = this.req.path.split("/");
-    if(paths.length != 3){
-        return;
+    if(paths.length <=3){
+        this.emit('message', {code:503, q: this.req.query});
+    }else{
+        var server = paths[1];
+        var handler = paths[2];
+        var method = paths[3];
+        this.emit('message', {code:200,s:server,h: handler, m: method, q: this.req.query});
     }
-    var handler = paths[1];
-    var method = paths[2];
 
-    this.emit('message', {h: handler, m: method, q: this.req.query});
 };
 
 WebSocket.prototype.send = function (msg) {
