@@ -75,6 +75,7 @@ app.configure('production|development', function () {
 
 //app.registerAdmin(timeReport, {app: app});
 // start app
+app.enable('systemMonitor');
 app.start();
 //reloader.start();
 process.on('uncaughtException', function (err) {
